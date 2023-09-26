@@ -3,7 +3,7 @@ body {
     line-height: 1.8;
     color: black;
     padding-top: 0px !important;
-    background-color: honeydew;
+    background-color: #C0E2E3;
   }
 
 p {font-size: 16px;}
@@ -22,3 +22,34 @@ p {font-size: 16px;}
 }
 
 img[alt=notebook] { width: 400px; }
+
+.main-container { 
+  display: flex;
+  flex-direction: row;
+}
+
+.week-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 20px;
+  justify-content: center;
+  align-items: center;
+  color: #05AFB2;
+
+  border-radius: 25px;
+  background: white;
+}
+
+a {
+  color: inherit;
+  margin: 0px;
+  padding: 0px;
+}
+
+.lineup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
