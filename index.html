@@ -1,55 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<title>PS70: Intro to Digital Fabrication </title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="./style.css" rel="stylesheet">
-
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
-  <div style="align-items: left; justify-content:left;" class="container-fluid">
-    <h3 class="nav-title"><a class="nav-link" href="./index.html">PS70: Intro to Digital Fabrication</a></h3>
-    <div class="navbar-nav">
-      <h4><a class="nav-link" href="./index.html">Home</a></h4>
-      <h4><a class="nav-link" href="./about.html">About</a></h4>
-    </div>
-  </div>
-</nav>
-
-<body>
-
-<div class="main-container">
-  <div class="week-container">
-    <a class="lineup" href="./01_intro/week1.html">
-      <img style="max-width: 300px; height: auto;" src="./01_intro/notebook.jpeg" />
-      Week 1: Introduction
-    </a>
-  </div>
-  <div class="week-container">
-    <a class="lineup" href="./02_construction/week2.html">
-      <img style="max-width: 200px; height: auto;" src="./02_construction/pressfit.png" />
-      Week 2: Press Fit Construction
-    </a>
-  </div>
-</div>
-
-
-<!-- <div class="container-fluid bg-3 text-center">
-  
-  <div class="row">
-    <div style="display: flex; flex-direction: column; margin: 0px 50px" class="col-sm-4">
-      <center><img style="max-width: 300px; height: auto;" src="./01_intro/notebook.jpeg" /></center>
-      <a href="./01_intro/week1.html">Week 1: Introduction</a>
-    </div>
-    <div style="display: flex; flex-direction: column; margin: 0px 50px" class="col-sm-4">
-      <center><img style="max-width: 200px; height: auto;" src="./02_construction/pressfit.png" /></center>
-      <a href="./02_construction/week2.html">Week 2: Press Fit Construction</a>
-    </div>
-  </div>
-</div>
-</div> -->
-</body>
-
-<!-- <script src="./strapdown.js"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
+    <head>
+        <title>PS70: Intro to Digital Fabrication </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../dist/output.css" rel="stylesheet">
+        <nav>
+            <div class="flex flex-row bg-yellow-100">
+                <a href="#">
+                    <div class="flex flex-row items-center p-2 text-3xl font-sans font-bold">
+                        <h1 class="text-cyan-500">PS70:&nbsp;&nbsp;</h1>
+                        <h1 class="text-amber-500">Introduction to Digital Fabrication</h1>                     
+                    </div>
+                </a>
+                <div class="flex flex-row items-center p-2">
+                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
+                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                </div>
+            </div>
+        </nav>
+    </head>
+    <body>
+        <div class="flex flex-row">
+            <div class="w-[810px]">
+                <div class="flex flex-row flex-wrap">
+                    <div class="p-5 w-[270px]">
+                        <a href="/src/pages/01_intro/week1.html">
+                            <div class="flex flex-col px-3 pt-3 pb-1 items-center bg-yellow-100 rounded-md">
+                                <img src="./src/imgs/01_intro.png" width="200" height="200">
+                                <h1 class="mt-2 mb-1 font-sans font-bold text-green-600 text-xs text-center">Week 1: Introduction</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-5 w-[270px]">
+                        <a href="/src/pages/02_construction/week2.html">
+                            <div class="flex flex-col px-3 pt-3 pb-1 items-center bg-yellow-100 rounded-md">
+                                <img src="./src/imgs/02_construction.png" width="200" height="200">
+                                <h1 class="mt-2 mb-1 font-sans font-bold text-green-600 text-xs text-center">Week 2: 2D Design & Cutting</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-5 w-[270px]">
+                        <a href="/src/pages/03_fabrication/week3.html">
+                            <div class="flex flex-col px-3 pt-3 pb-1 items-center bg-yellow-100 rounded-md">
+                                <img src="./src/imgs/03_fabrication.jpg" width="200" height="200">
+                                <h1 class="mt-2 mb-1 font-sans font-bold text-green-600 text-xs text-center">Week 3: Hand tools and fabrication</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-5 w-[270px]">
+                        <a href="/src/pages/04_microcontroller/week4.html">
+                            <div class="flex flex-col px-3 pt-3 pb-1 items-center bg-yellow-100 rounded-md">
+                                <img src="./src/imgs/04_micro.jpg" width="200" height="200">
+                                <h1 class="mt-2 mb-1 font-sans font-bold text-green-600 text-xs text-center">Week 4: Microcontroller Programming</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-5 w-[270px]">
+                        <a href="/src/pages/05_printing/week5.html">
+                            <div class="flex flex-col px-3 pt-3 pb-1 items-center bg-yellow-100 rounded-md">
+                                <img src="./src/imgs/05_print.jpg" width="200" height="200">
+                                <h1 class="mt-2 mb-1 font-sans font-bold text-green-600 text-xs text-center">Week 5: 3D Design & Printing</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-5 w-[270px]">
+                        <a href="/src/pages/06_eid/week6.html">
+                            <div class="flex flex-col px-3 pt-3 pb-1 items-center bg-yellow-100 rounded-md">
+                                <img src="./src/imgs/06_eid.jpg" width="200" height="200">
+                                <h1 class="mt-2 mb-1 font-sans font-bold text-green-600 text-xs text-center">Week 6: Electronic Input Devices</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-5 w-[270px]">
+                        <a href="/src/pages/07_eod/week7.html">
+                            <div class="flex flex-col px-3 pt-3 pb-1 items-center bg-yellow-100 rounded-md">
+                                <img src="./src/imgs/07_eod.jpg" width="200" height="200">
+                                <h1 class="mt-2 mb-1 font-sans font-bold text-green-600 text-xs text-center">Week 7: Electronic Output Devices</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-5 w-[270px]">
+                        <a href="/src/pages/08_cnc/week8.html">
+                            <div class="flex flex-col px-3 pt-3 pb-1 items-center bg-yellow-100 rounded-md">
+                                <img src="./src/imgs/08_cnc.jpg" width="200" height="200">
+                                <h1 class="mt-2 mb-1 font-sans font-bold text-green-600 text-xs text-center">Week 8: CNC Milling</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-5 w-[270px]">
+                        <a href="/src/pages/09_radio/week9.html">
+                            <div class="flex flex-col px-3 pt-3 pb-1 items-center bg-yellow-100 rounded-md">
+                                <img src="./src/imgs/09_radio.jpg" width="200" height="200">
+                                <h1 class="mt-2 mb-1 font-sans font-bold text-green-600 text-xs text-center">Week 9: Radio, WiFi, Bluetooth (IoT)</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-5 w-[270px]">
+                        <a href="/src/pages/10_effector/week10.html">
+                            <div class="flex flex-col px-3 pt-3 pb-1 items-center bg-yellow-100 rounded-md">
+                                <img src="./src/imgs/10_effector.jpeg" width="200" height="200">
+                                <h1 class="mt-2 mb-1 font-sans font-bold text-green-600 text-xs text-center">Week 10: Machine Building and End Effectors</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-5 w-[270px]">
+                        <a href="/src/pages/11_plans/week11.html">
+                            <div class="flex flex-col px-3 pt-3 pb-1 items-center bg-yellow-100 rounded-md">
+                                <img src="./src/imgs/11_plan.webp" width="200" height="200">
+                                <h1 class="mt-2 mb-1 font-sans font-bold text-green-600 text-xs text-center">Week 11: Project Planning</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-5 w-[270px]">
+                        <a href="/src/pages/12_project/week12.html">
+                            <div class="flex flex-col px-3 pt-3 pb-1 items-center bg-yellow-100 rounded-md">
+                                <img src="./src/imgs/12_project.jpg" width="200" height="200">
+                                <h1 class="mt-2 mb-1 font-sans font-bold text-green-600 text-xs text-center">Week 12: Final Project</h1>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col p-10">
+                <div>
+                    <h1 class="font-sans font-bold text-cyan-300 text-4xl">Hello. Welcome to my page</h1>
+                    <br>
+                    <h1 class="font-sans font-bold text-orange-300 text-4xl">My name is </h1>
+                    <h1 class="font-sans font-bold text-orange-500 text-6xl">Alan Morelos</h1>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

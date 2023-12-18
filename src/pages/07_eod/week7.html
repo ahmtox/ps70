@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>PS70: Intro to Digital Fabrication </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../../../dist/output.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+        <nav>
+            <div class="flex flex-row bg-yellow-100">
+                <a href="../../../index.html">
+                    <div class="flex flex-row items-center p-2 text-3xl font-sans font-bold">
+                        <h1 class="text-cyan-500">PS70:&nbsp;&nbsp;</h1>
+                        <h1 class="text-amber-500">Introduction to Digital Fabrication</h1>                     
+                    </div>
+                </a>
+                <div class="flex flex-row items-center p-2">
+                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
+                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                </div>
+            </div>
+        </nav>
+    </head>
+    <body>
+        <pre>
+            <code class="language-arduino">
+int buzzer = 2;
+int pot2 = 1;
+int pot1 = 0;
+int frequency;
+
+void setup() {
+    Serial.begin(9600);
+    pinMode(buzzer, OUTPUT); 
+}
+
+void loop() {
+    Serial.print("Pot #1: ");
+    Serial.println(analogRead(pot1));
+    Serial.print("Pot #2: ");
+    Serial.println(analogRead(pot2));
+
+    frequency = analogRead(pot1) + analogRead(pot2);
+    Serial.print("Total Pot Values: ");
+    Serial.println(analogRead(pot1) + analogRead(pot2));
+    if (frequency > 1000) {
+    myTone(buzzer, analogRead(pot1) + analogRead(pot2));
+    } else {
+    myNoTone(buzzer);
+    }
+    delay(100);
+}
+
+void myTone(int pin, int freq)
+{
+    ledcAttachPin(pin, 0); 
+    double noteFreq =  (double) freq / (double)(1 << (8-4));
+    Serial.print("Note Frequency: ");
+    Serial.println(noteFreq);
+    ledcWriteTone(0, noteFreq); 
+}
+
+void myNoTone( int pin)
+{
+    ledcDetachPin(pin);
+}
+            </code>
+        </pre>
+    </body>
+</html>

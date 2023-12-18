@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>PS70: Intro to Digital Fabrication </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../../../dist/output.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+        <nav>
+            <div class="flex flex-row bg-yellow-100">
+                <a href="../../../index.html">
+                    <div class="flex flex-row items-center p-2 text-3xl font-sans font-bold">
+                        <h1 class="text-cyan-500">PS70:&nbsp;&nbsp;</h1>
+                        <h1 class="text-amber-500">Introduction to Digital Fabrication</h1>                     
+                    </div>
+                </a>
+                <div class="flex flex-row items-center p-2">
+                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
+                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                </div>
+            </div>
+        </nav>
+    </head>
+    <body>
+        <pre>
+            <code class="language-arduino">
+int strip = D0;
+int sound = D1;
+int factor = 1;
+
+long prevMillis = 0;
+long prevSensor = 0;
+
+void setup() {
+    Serial.begin(9600);
+
+    prevMillis = millis();
+    prevSensor = analogRead(strip);
+}
+
+void loop() {  
+    int currSensor = analogRead(strip);
+    
+    int factor = analogRead(D2);
+    factor = map(factor, 0, 4095, 1, 8);
+    Serial.println(factor);
+    
+    currSensor = map(currSensor, 0, 750, 200, 800) * factor;
+    Serial.println(currSensor);
+    
+    if (!(currSensor < 230*factor)) {
+    tone(sound, currSensor);
+    }
+    delay(5);
+    
+    prevSensor = currSensor;
+    prevMillis = millis();
+    
+    if (millis() - prevMillis > 5000 || currSensor < 230*factor) {
+    Serial.print("\tNInterval");
+    noTone(sound);
+    } else {
+    Serial.print("\tInterval");
+    if (!(currSensor < 230*factor)) {
+        tone(sound, currSensor);
+    }
+    delay(5);
+    }
+    
+    Serial.print("\n");
+}
+            </code>
+        </pre>
+    </body>
+</html>

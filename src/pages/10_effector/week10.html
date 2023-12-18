@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>PS70: Intro to Digital Fabrication </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../../../dist/output.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+        <nav>
+            <div class="flex flex-row bg-yellow-100">
+                <a href="../../../index.html">
+                    <div class="flex flex-row items-center p-2 text-3xl font-sans font-bold">
+                        <h1 class="text-cyan-500">PS70:&nbsp;&nbsp;</h1>
+                        <h1 class="text-amber-500">Introduction to Digital Fabrication</h1>                     
+                    </div>
+                </a>
+                <div class="flex flex-row items-center p-2">
+                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
+                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                </div>
+            </div>
+        </nav>
+    </head>
+    <body>
+        <pre>
+            <code class="language-arduino">
+#include AccelStepper.h
+#include MultiStepper.h
+#include math.h
+
+#define NUM_POINTS 18
+
+double coordinates[NUM_POINTS][2];
+
+//step 25, dir 26 left motor
+AccelStepper stepper1(1, 25, 26);
+
+//step 4, dir 2 right motor
+AccelStepper stepper2(1, 4, 2);
+
+//step 12, dir 13 end effector
+AccelStepper stepper3(1, 12, 13);
+
+MultiStepper wheels;
+
+int global_x = 0;
+int global_y = 0;
+
+void setup() {   
+    Serial.begin(9600);
+    stepper1.setMaxSpeed(3000);
+    stepper1.setAcceleration(4000);
+    stepper2.setMaxSpeed(3000);
+    stepper2.setAcceleration(4000);
+    stepper3.setMaxSpeed(3000);
+    stepper3.setAcceleration(4000);
+    
+    wheels.addStepper(stepper1);
+    wheels.addStepper(stepper2);
+    wheels.addStepper(stepper3);
+}
+
+void loop()
+{
+    long positions[2];
+    generateCircle();
+    
+    printf("Going to 0:\n");
+    global_x = map(0, -9, 9, -15000, 15000);
+    global_y = map(0, -9, 9, -12500/2, 12500/2);
+    positions[0] = global_y;
+    positions[1] = -global_y;
+    positions[2] = global_x;
+    wheels.moveTo(positions);
+    wheels.runSpeedToPosition(); // Blocks until all are in position
+    delay(100);
+    
+    printf("Coordinates of the circle:\n");
+    for (int i = 0; i < NUM_POINTS + 1; i++) {
+        if (i == NUM_POINTS) {
+        printf("(%lf, %lf)\n", coordinates[i][0], coordinates[i][1]);
+        global_x = map(coordinates[0][0], -9, 9, -15000, 15000);
+        global_y = map(coordinates[0][1], -9, 9, -12500/2, 12500/2);
+        positions[0] = global_y;
+        positions[1] = -global_y;
+        positions[2] = global_x;
+        wheels.moveTo(positions);
+        wheels.runSpeedToPosition(); // Blocks until all are in position
+        delay(100);
+        break;
+        }
+        printf("(%lf, %lf)\n", coordinates[i][0], coordinates[i][1]);
+        global_x = map(coordinates[i][0], -9, 9, -15000, 15000);
+        global_y = map(coordinates[i][1], -9, 9, -12500/2, 12500/2);
+        positions[0] = global_y;
+        positions[1] = -global_y;
+        positions[2] = global_x;
+        wheels.moveTo(positions);
+        wheels.runSpeedToPosition(); // Blocks until all are in position
+        delay(100);
+    }
+    
+    printf("Going to 0:\n");
+    global_x = map(0, -9, 9, -15000, 15000);
+    global_y = map(0, -9, 9, -12500/2, 12500/2);
+    positions[0] = global_y;
+    positions[1] = -global_y;
+    positions[2] = global_x;
+    wheels.moveTo(positions);
+    wheels.runSpeedToPosition(); // Blxxocks until all are in position
+    delay(100);
+}
+
+void generateCircle() {
+    int radius = 9;
+    double angle = 0;
+    double angleIncrement = 2 * M_PI / NUM_POINTS; // Angle increment for each point
+    int i;
+
+    for (i = 0; i < NUM_POINTS; i++) {
+        coordinates[i][0] = radius * cos(angle); // x = r * cos(theta)
+        coordinates[i][1] = radius * sin(angle); // y = r * sin(theta)
+        angle -= angleIncrement; // Decreasing angle to move clockwise
+    }
+}
+            </code>
+        </pre>
+    </body>
+</html>
