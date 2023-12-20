@@ -20,115 +20,127 @@
                     </div>
                 </a>
                 <div class="flex flex-row items-center p-2">
-                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
-                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                    <a href="../about/about.html">
+                        <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
+                    </a>
+                    <a href="../01_intro/week1.html">
+                        <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                    </a>
                 </div>
             </div>
         </nav>
     </head>
     <body>
-        <pre>
-            <code class="language-arduino">
-#include AccelStepper.h
-#include MultiStepper.h
-#include math.h
+        <div class="flex flex-col">
+            <p>I was predominantly responsible for the coding project of the effector group project. If you want the full documentation please visit Mila's site:</p>
+            <a href="https://mila-barry.github.io/PS70/10_machinebuild/index.html" class="p-10 text-blue-400">Mila's Site</a>
+            <img src="effector.jpeg" />
+            <p>Besides that I will discuss a little more on the actual component which I did work on which was the coding for the robot. The way the code works at the moment is that it makes use of AccelStepper and MultiStepper to control multiple servos at the same time. This allows me to use a 2D array to manipulate the 2 dimensional ways that the robot can move. In this case, the robot actually can only control the y through the wheels on the side, and the x with the more precise motor. The actual curvature doesn't come from actually infinitely many points in one but through multiple smaller points.</p>
+            <p>In this case we have defined a value called NUM_POINTS which keeps track of the amount of points you want to plot. Then from there we have an array of coordinates that is a set of some sum of coordinates with a list of 2 components. This array is populated through a drawing function for a circle, particularly generateCircle which creates a circular set of ordered points using trig to calculate x,y position of the circle. The loop makes one call to generate the set of coordinates, before going to 0,0 and then mapping the set of coordinates in a loop by assigning the servo positions dynamically to move to at some set speed and acceleration to the points. Some bottlenecks is that the actual mapping of servo dimensions and the actual points is finnicky and can use more empircical testing. However besides that, there is definitely a concurrent way to measure the amount of steps per inches, but I did a guess-and check method and calculate something around 15000 steps corresponds to around 8in. I try to make use of this for both the x and y, though it usually makes an oval, meaning that the slippage in the wheels and servo was a bottleneck in some degree.</p>
+            <p>Here is the actual code that I developed and put on the robot:</p>
+            <pre>
+                <code class="language-arduino">
+    #include AccelStepper.h
+    #include MultiStepper.h
+    #include math.h
 
-#define NUM_POINTS 18
+    #define NUM_POINTS 18
 
-double coordinates[NUM_POINTS][2];
+    double coordinates[NUM_POINTS][2];
 
-//step 25, dir 26 left motor
-AccelStepper stepper1(1, 25, 26);
+    //step 25, dir 26 left motor
+    AccelStepper stepper1(1, 25, 26);
 
-//step 4, dir 2 right motor
-AccelStepper stepper2(1, 4, 2);
+    //step 4, dir 2 right motor
+    AccelStepper stepper2(1, 4, 2);
 
-//step 12, dir 13 end effector
-AccelStepper stepper3(1, 12, 13);
+    //step 12, dir 13 end effector
+    AccelStepper stepper3(1, 12, 13);
 
-MultiStepper wheels;
+    MultiStepper wheels;
 
-int global_x = 0;
-int global_y = 0;
+    int global_x = 0;
+    int global_y = 0;
 
-void setup() {   
-    Serial.begin(9600);
-    stepper1.setMaxSpeed(3000);
-    stepper1.setAcceleration(4000);
-    stepper2.setMaxSpeed(3000);
-    stepper2.setAcceleration(4000);
-    stepper3.setMaxSpeed(3000);
-    stepper3.setAcceleration(4000);
-    
-    wheels.addStepper(stepper1);
-    wheels.addStepper(stepper2);
-    wheels.addStepper(stepper3);
-}
+    void setup() {   
+        Serial.begin(9600);
+        stepper1.setMaxSpeed(3000);
+        stepper1.setAcceleration(4000);
+        stepper2.setMaxSpeed(3000);
+        stepper2.setAcceleration(4000);
+        stepper3.setMaxSpeed(3000);
+        stepper3.setAcceleration(4000);
+        
+        wheels.addStepper(stepper1);
+        wheels.addStepper(stepper2);
+        wheels.addStepper(stepper3);
+    }
 
-void loop()
-{
-    long positions[2];
-    generateCircle();
-    
-    printf("Going to 0:\n");
-    global_x = map(0, -9, 9, -15000, 15000);
-    global_y = map(0, -9, 9, -12500/2, 12500/2);
-    positions[0] = global_y;
-    positions[1] = -global_y;
-    positions[2] = global_x;
-    wheels.moveTo(positions);
-    wheels.runSpeedToPosition(); // Blocks until all are in position
-    delay(100);
-    
-    printf("Coordinates of the circle:\n");
-    for (int i = 0; i < NUM_POINTS + 1; i++) {
-        if (i == NUM_POINTS) {
-        printf("(%lf, %lf)\n", coordinates[i][0], coordinates[i][1]);
-        global_x = map(coordinates[0][0], -9, 9, -15000, 15000);
-        global_y = map(coordinates[0][1], -9, 9, -12500/2, 12500/2);
+    void loop()
+    {
+        long positions[2];
+        generateCircle();
+        
+        printf("Going to 0:\n");
+        global_x = map(0, -9, 9, -15000, 15000);
+        global_y = map(0, -9, 9, -12500/2, 12500/2);
         positions[0] = global_y;
         positions[1] = -global_y;
         positions[2] = global_x;
         wheels.moveTo(positions);
         wheels.runSpeedToPosition(); // Blocks until all are in position
         delay(100);
-        break;
+        
+        printf("Coordinates of the circle:\n");
+        for (int i = 0; i < NUM_POINTS + 1; i++) {
+            if (i == NUM_POINTS) {
+            printf("(%lf, %lf)\n", coordinates[i][0], coordinates[i][1]);
+            global_x = map(coordinates[0][0], -9, 9, -15000, 15000);
+            global_y = map(coordinates[0][1], -9, 9, -12500/2, 12500/2);
+            positions[0] = global_y;
+            positions[1] = -global_y;
+            positions[2] = global_x;
+            wheels.moveTo(positions);
+            wheels.runSpeedToPosition(); // Blocks until all are in position
+            delay(100);
+            break;
+            }
+            printf("(%lf, %lf)\n", coordinates[i][0], coordinates[i][1]);
+            global_x = map(coordinates[i][0], -9, 9, -15000, 15000);
+            global_y = map(coordinates[i][1], -9, 9, -12500/2, 12500/2);
+            positions[0] = global_y;
+            positions[1] = -global_y;
+            positions[2] = global_x;
+            wheels.moveTo(positions);
+            wheels.runSpeedToPosition(); // Blocks until all are in position
+            delay(100);
         }
-        printf("(%lf, %lf)\n", coordinates[i][0], coordinates[i][1]);
-        global_x = map(coordinates[i][0], -9, 9, -15000, 15000);
-        global_y = map(coordinates[i][1], -9, 9, -12500/2, 12500/2);
+        
+        printf("Going to 0:\n");
+        global_x = map(0, -9, 9, -15000, 15000);
+        global_y = map(0, -9, 9, -12500/2, 12500/2);
         positions[0] = global_y;
         positions[1] = -global_y;
         positions[2] = global_x;
         wheels.moveTo(positions);
-        wheels.runSpeedToPosition(); // Blocks until all are in position
+        wheels.runSpeedToPosition(); // Blxxocks until all are in position
         delay(100);
     }
-    
-    printf("Going to 0:\n");
-    global_x = map(0, -9, 9, -15000, 15000);
-    global_y = map(0, -9, 9, -12500/2, 12500/2);
-    positions[0] = global_y;
-    positions[1] = -global_y;
-    positions[2] = global_x;
-    wheels.moveTo(positions);
-    wheels.runSpeedToPosition(); // Blxxocks until all are in position
-    delay(100);
-}
 
-void generateCircle() {
-    int radius = 9;
-    double angle = 0;
-    double angleIncrement = 2 * M_PI / NUM_POINTS; // Angle increment for each point
-    int i;
+    void generateCircle() {
+        int radius = 9;
+        double angle = 0;
+        double angleIncrement = 2 * M_PI / NUM_POINTS; // Angle increment for each point
+        int i;
 
-    for (i = 0; i < NUM_POINTS; i++) {
-        coordinates[i][0] = radius * cos(angle); // x = r * cos(theta)
-        coordinates[i][1] = radius * sin(angle); // y = r * sin(theta)
-        angle -= angleIncrement; // Decreasing angle to move clockwise
+        for (i = 0; i < NUM_POINTS; i++) {
+            coordinates[i][0] = radius * cos(angle); // x = r * cos(theta)
+            coordinates[i][1] = radius * sin(angle); // y = r * sin(theta)
+            angle -= angleIncrement; // Decreasing angle to move clockwise
+        }
     }
-}
-            </code>
-        </pre>
+                </code>
+            </pre>
+        </div>
     </body>
 </html>

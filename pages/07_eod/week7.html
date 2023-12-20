@@ -20,56 +20,73 @@
                     </div>
                 </a>
                 <div class="flex flex-row items-center p-2">
-                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
-                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                    <a href="../about/about.html">
+                        <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
+                    </a>
+                    <a href="../01_intro/week1.html">
+                        <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                    </a>
                 </div>
             </div>
         </nav>
     </head>
     <body>
-        <pre>
-            <code class="language-arduino">
-int buzzer = 2;
-int pot2 = 1;
-int pot1 = 0;
-int frequency;
+        <div class="flex flex-col">
+            <p>This weeks assignment was to have an MVP and a serious attempt at one of the most challenging aspects of my final project, which I decided at the time would be an otamatone. In this I would have at least one input and one output and that I would have a microcontroller that describes the function.</p>
+            <p>For my MVP I decided to work on the music aspect of my otamatone as I thought it would be difficult to actually control the frequencies that would be output on a limited sensor scale. In that sense I worked with for the moment with potentiometers and also calibrating a speaker to work with this. Furthermore, I decided to not make use of an Arduino but rather opt for an ESP32 because that is what my project would be using at the time.</p>
+            <p>I rigged up 2 potentiometers together into the analog pins for my ESP32 C3 Dev module, and I also connected a buzzer to one of the digital pins. That was the easy part. The hard part of my project was trying to figure out how to get sound output at specific frequecies to work for my project.</p>
+            <img src="./img/side.jpg" />
+            <img src="./img/top.jpg" />
+            <p>After doing a bit of digging I realized there were many issues regarding LEDC and how it wasn't initialized or not working for my component. I did some documentation lookup and read that I needed to be working with ledcWriteTone to manipulate some tones. I could then input tones at given frequencies and make it work.</p>
+            <p>Here is the final code:</p>
+            <pre>
+                <code class="language-arduino">
+    int buzzer = 2;
+    int pot2 = 1;
+    int pot1 = 0;
+    int frequency;
 
-void setup() {
-    Serial.begin(9600);
-    pinMode(buzzer, OUTPUT); 
-}
-
-void loop() {
-    Serial.print("Pot #1: ");
-    Serial.println(analogRead(pot1));
-    Serial.print("Pot #2: ");
-    Serial.println(analogRead(pot2));
-
-    frequency = analogRead(pot1) + analogRead(pot2);
-    Serial.print("Total Pot Values: ");
-    Serial.println(analogRead(pot1) + analogRead(pot2));
-    if (frequency > 1000) {
-    myTone(buzzer, analogRead(pot1) + analogRead(pot2));
-    } else {
-    myNoTone(buzzer);
+    void setup() {
+        Serial.begin(9600);
+        pinMode(buzzer, OUTPUT); 
     }
-    delay(100);
-}
 
-void myTone(int pin, int freq)
-{
-    ledcAttachPin(pin, 0); 
-    double noteFreq =  (double) freq / (double)(1 << (8-4));
-    Serial.print("Note Frequency: ");
-    Serial.println(noteFreq);
-    ledcWriteTone(0, noteFreq); 
-}
+    void loop() {
+        Serial.print("Pot #1: ");
+        Serial.println(analogRead(pot1));
+        Serial.print("Pot #2: ");
+        Serial.println(analogRead(pot2));
 
-void myNoTone( int pin)
-{
-    ledcDetachPin(pin);
-}
-            </code>
-        </pre>
+        frequency = analogRead(pot1) + analogRead(pot2);
+        Serial.print("Total Pot Values: ");
+        Serial.println(analogRead(pot1) + analogRead(pot2));
+        if (frequency > 1000) {
+        myTone(buzzer, analogRead(pot1) + analogRead(pot2));
+        } else {
+        myNoTone(buzzer);
+        }
+        delay(100);
+    }
+
+    void myTone(int pin, int freq)
+    {
+        ledcAttachPin(pin, 0); 
+        double noteFreq =  (double) freq / (double)(1 << (8-4));
+        Serial.print("Note Frequency: ");
+        Serial.println(noteFreq);
+        ledcWriteTone(0, noteFreq); 
+    }
+
+    void myNoTone( int pin)
+    {
+        ledcDetachPin(pin);
+    }
+                </code>
+            </pre>
+            <p>With that my actual code was able to compile and make frequencies at desired sounds:</p>
+            <video width="400" controls autoplay>
+                <source src="./img/demonstration.MOV" type="video/mp4">
+            </video>
+        </div>
     </body>
 </html>

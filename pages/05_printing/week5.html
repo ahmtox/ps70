@@ -14,13 +14,40 @@
                     </div>
                 </a>
                 <div class="flex flex-row items-center p-2">
-                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
-                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                    <a href="../about/about.html">
+                        <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
+                    </a>
+                    <a href="../01_intro/week1.html">
+                        <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                    </a>
                 </div>
             </div>
         </nav>
     </head>
     <body>
-        
+        <div class="flex flex-col">
+            <p>This weeks assignment was to design something in Fusion 360, print it, and also kind of create a scan of something in 3D. I decided to mesh both ideas. So what I did first was to scan something of the assignment, while for me I decided to scan a cup with a small like test 3D cube component. The program used to scan my cup was called Sense. So when I went to scan it scanned the object, but it had to be still. I used a rotating platform to scan the object without needing to move the camera. Thankfully the cup was a good scannable object because it was not that reflective so the scanner did a fairly good job scanning the object.</p>
+            <div class="flex flex-row flex-wrap">
+                <img src="./img/originalcup.jpg" />
+                <img src="./img/originalcupside.jpg" />
+            </div>
+            <p>These what were the original cups look like with the component inside the lightbox. I then decided to scan it using sense and this is how it came out.</p>
+            <div class="flex flex-row flex-wrap">
+                <img src="./img/cupinside.jpg" />
+                <img src="./img/cuprender.jpg" />
+                <img src="./img/cupside.jpg" />
+                <img src="./img/rawcup.jpg" />
+                <img src="./img/rendermesh.jpg" />
+            </div>
+            <p>These images include the final 3D printed result for my actual component. 3D printing was done using the Prusa Slicer to convert my .ply model into an STL file, and when I can use the slicer to select a side to build on. Once I did that, I was able to easily port it over to a 3D printer and it printed without a hitch in a day. The cup ended up with some holes but it works in the end.</p>
+            <p>I have included links to my files as well</p>
+            <div class="flex flex-col px-10 pb-10 text-blue-500">
+                <a href="./alan-cup-final-stl.stl">Final STL</a>
+                <a href="./alan-cup-final-stl_0.2mm_PLA_MK3S_7h28m.gcode">GCODE</a>
+                <a href="./alan-cup-final.ply">Final PLY</a>
+                <a href="./alan-cup_fuse.ply">Fuse PLY</a>
+                <a href="./alan-cup_mesh.ply">Mesh PLY</a>
+            </div>
+        </div>
     </body>
 </html>

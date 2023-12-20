@@ -14,13 +14,44 @@
                     </div>
                 </a>
                 <div class="flex flex-row items-center p-2">
-                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
-                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                    <a href="../about/about.html">
+                        <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
+                    </a>
+                    <a href="../01_intro/week1.html">
+                        <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                    </a>
                 </div>
             </div>
         </nav>
     </head>
     <body>
-        
+        <div class="flex flex-col">
+            <p>This week we did a large tour of all the different lab tools and materials and also how to use them in a safe manner. We learned the best way to drill a hope, and also tap it. We also looked a little bit into seeing how to solder and desolder components. We also got to see how to use a drill press and scroll saw. I was able to find about all the different materials I could use around the lab. The main goal for this week was to create a kinetic sculpture from pieces that you were able to cut up.</p>
+            <p>For this weeks assignment, I have a lot different ideas, but while I was ideating on them I thought of creating a cool planetary gear system and I cadded it up in Fusion360.</p>
+            <img src="./img/drawing.png" />
+            <p>So while I started prototyping with cardboard initially I had a lot of failures with my components becauses cardboard doesn't mesh well with gears. So I ended up having to work with wood for my main components.</p>
+            <p>I downloaded a nice gear module in Fusion360 from an addon that lets you make a spur gear super easily instead of drawing it. I took a bit of time to realize some various optimal parameters and decided on 20DP gears with 32T for the main center gears. My motor gear would be 20DP 12T gears. I used a tutorial online to calculate the center distance for my gears using a 0.003in offset to ensure some slippage to reduce issues with the gears not meshing together.</p>
+            <p>As such independenly, all my gear parameters were 20DP, with the top gears being 32T and the motor gear on the bottom being 12T. Nominal dimensions for the center of the gear were circular with a size of 0.168in.</p>
+            <p>After learning Fusion360, I made a gear planetary system. I lasercut my gears and then screwed them onto a pentagon base. I cut all my gears out of wood along with the pentagon.</p>
+            <p>I have listed a few images that show the process</p>
+            <div class="flex flex-row flex-wrap">
+                <img src="./img/assembly.png" />
+                <img src="./img/backside.jpg" />
+                <img src="./img/failedmotorgear.png" />
+                <img src="./img/frontside.jpg" />
+                <img src="./img/gear.png" />
+                <img src="./img/motorgear.png" />
+                <img src="./img/outline.png" />
+                <img src="./img/plane.png" />
+                <img src="./img/spingear.png" />
+                <img src="./img/standoff.png" />
+                <img src="./img/triangle.png" />
+                <img src="./img/triangles.jpg" />
+            </div>
+            <p>I have attached a small video demonstration. My project broke before I could attach the motor :(. You could put little paper faces on the parts where theres holes not aligned in the center.</p>
+            <video width="400" controls autoplay>
+                <source src="./img/spin.MOV" type="video/mp4">
+            </video>
+        </div>
     </body>
 </html>

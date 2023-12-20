@@ -1,50 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<title>PS70: Intro to Digital Fabrication </title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../style.css" rel="stylesheet">
-
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
-  <div style="align-items: left; justify-content:left;" class="container-fluid">
-    <h3 class="nav-title"><a class="nav-link" href="../index.html">PS70: Intro to Digital Fabrication</a></h3>
-    <div class="navbar-nav">
-      <h4><a class="nav-link" href="../index.html">Home</a></h4>
-      <h4><a class="nav-link" href="../about.html">About</a></h4>
-    </div>
-  </div>
-</nav>
-
-<body>
-  <div style="margin: 5px; ">
-    <h2>Press Fit Construction</h2>
-    <p>
-      I first started the press fit construction by trying to draw any shape I could think of. During
-      my deliberations, I found a shape I settled on that was able to roll despite not being fully circular. 
-      I found inspiration from Reuleaux triangle which can roll despite it not being fully circular. While I 
-      didn't end up iterating on the shape as a whole, I did something simular and used a rectangle instead of a 
-      triangle in order to create my specific shape.
-    </p>
-    <img style="max-width: 200px; height: auto;" src="reuleaux.png" />
-    <p>
-      The shape as a result was the following image: 
-    </p>
-    <img style="max-width: 200px; height: auto;" src="shape.png" />
-    <p>
-      When finalalizing details after making my sketch parametric, I had to figure out what the kerf was for my 
-      shape. After I made a few copies, failing a few times to a faulty kerf, I found out it was about 0.3mm, or
-      0.15mm on each side. As a result I made the width of my holes around 3.9mm in order to account for the size of
-      the cardboard I was working with as well. This let me snuggly tight the shape together and I finally got the following
-      image as a result.
-    </p>
-
-
-    </p>
-    <img style="max-width: 400px; height: auto;" src="pressfit.png" />
-  </div>
-</body>
-
-<script src="./strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
+    <head>
+        <title>PS70: Intro to Digital Fabrication </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../../output.css" rel="stylesheet">
+        <nav>
+            <div class="flex flex-row bg-yellow-100">
+                <a href="../../index.html">
+                    <div class="flex flex-row items-center p-2 text-3xl font-sans font-bold">
+                        <h1 class="text-cyan-500">PS70:&nbsp;&nbsp;</h1>
+                        <h1 class="text-amber-500">Introduction to Digital Fabrication</h1>                     
+                    </div>
+                </a>
+                <div class="flex flex-row items-center p-2">
+                  <a href="../about/about.html">
+                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
+                  </a>
+                  <a href="../01_intro/week1.html">
+                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                  </a>
+                </div>
+            </div>
+        </nav>
+    </head>
+    <body>
+        <div class="flex flex-col">
+          <p>I first started the press fit construction by trying to draw any shape I could think of. During my deliberations, I found a shape I settled on that was able to roll despite not being fully circular. I found inspiration from Reuleaux triangle which can roll despite it not being fully circular. While I didn't end up iterating on the shape as a whole, I did something simular and used a rectangle instead of a triangle in order to create my specific shape.</p>
+          <img src="./img/reuleaux.png" />
+          <p>When finalalizing details after making my sketch parametric, I had to figure out what the kerf was for my shape. After I made a few copies, failing a few times to a faulty kerf, I found out it was about 0.3mm, or 0.15mm on each side. As a result I made the width of my holes around 3.9mm in order to account for the size of the cardboard I was working with as well. This let me snuggly tight the shape together and I finally got the following image as a result.</p>
+          <img src="./img/shape.png" />
+          <img src="./img/pressfit.png" />
+          <p>I have included some additional images which demonstrates the linkages and also the final shape as well:</p>
+          <img src="./img/cad.png" />
+          <img src="./img/shape.jpg" />
+          <img src="./img/links.jpg" />
+        </div>
+    </body>
 </html>

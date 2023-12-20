@@ -20,32 +20,47 @@
                     </div>
                 </a>
                 <div class="flex flex-row items-center p-2">
-                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
-                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                    <a href="../about/about.html">
+                        <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
+                    </a>
+                    <a href="../01_intro/week1.html">
+                        <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                    </a>
                 </div>
             </div>
         </nav>
     </head>
     <body>
-        <pre>
-            <code class="language-arduino">
-int yellow = D0;
-int red = D1;
+        <div class="flex flex-col">
+            <p>The assignment for this week to code an Arduino to do something, so I knew right off the bat I wanted to make something work with LED's. I learned how to light up an LED in arduino so I thought it might be cool to extend this using two LEDs instead of just one. I didn't know how to exactly wire things together, so I had to watch a few tutorials on wiring components in Arduino.</p>
+            <p>Of the materials that I used, I only used Breadboard, some wires, my ESP32 equivalent, 2 LED's, and 2 100 ohm resistors.</p>
+            <p>The code below is what I used in conjucation with my ESP32 XIAO C3</p>
+            <pre>
+                <code class="language-arduino">
+    int yellow = D0;
+    int red = D1;
 
-void setup() {
-    pinMode(yellow, OUTPUT);
-    pinMode(red, OUTPUT);
-}
+    void setup() {
+        pinMode(yellow, OUTPUT);
+        pinMode(red, OUTPUT);
+    }
 
-void loop() {
-    digitalWrite(yellow, HIGH);
-    digitalWrite(red, HIGH);
-    delay(1000);                   
-    digitalWrite(yellow, LOW); 
-    digitalWrite(red, LOW);
-    delay(1000);              
-}
-            </code>
-        </pre>
+    void loop() {
+        digitalWrite(yellow, HIGH);
+        digitalWrite(red, HIGH);
+        delay(1000);                   
+        digitalWrite(yellow, LOW); 
+        digitalWrite(red, LOW);
+        delay(1000);              
+    }
+                </code>
+            </pre>
+            <p>This is what the layout of the actual wiring looks like:</p>
+            <img src="./img/layout.jpg" />
+            <p>Here is a video demonstration showing the LED lights turn on and off. I tried to make use of the lightbox for this project demonstration</p>
+            <video width="400" controls autoplay>
+                <source src="./img/demonstration.MOV" type="video/mp4">
+            </video>
+        </div>
     </body>
 </html>

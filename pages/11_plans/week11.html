@@ -14,13 +14,47 @@
                     </div>
                 </a>
                 <div class="flex flex-row items-center p-2">
-                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
-                    <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                    <a href="../about/about.html">
+                        <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">About</h1>
+                    </a>
+                    <a href="../01_intro/week1.html">
+                        <h1 class="text-green-600 pl-6 text-1xl font-sans font-bold">Project Proposal</h1>
+                    </a>
                 </div>
             </div>
         </nav>
     </head>
     <body>
-        
+        <div class="flex flex-col">
+            <p>While there is no particular assignment for this page, this page serves as some project planning and prep. In this sense I will document a few desired points I wish to reach, and also some failures that I had.</p>
+            <p>Now for me I knew that the hardest part of this project would certainly be how to actual keep track of the finger position on some sensor such that I would be able to manipulate the sensor value just by sliding my finger. I came up and ideated with through a design that would potentially work. I read up on how potentiometers work, particularly linear potentiometers work, and they usually have some slider that controls the actual current path which means that a longer path means more resistance. I knew the idea would be similar.</p>
+            <p>So my first prototype for this iteration was to create a small conductive plate two two separate bases, one base which uses velostat that acts a sensor for whenever it was pressed onto a ground termainl which was my copper plate that it would increase the distance for resistance or not. So if I were to simplify this, I have two layers: A ground layer, and a controller layer. The ground layer in this iteration would be literally a taped up acrylic base using copper tape, and the control layer would be a large sheet of velostat.</p>
+            <div class="flex flex-row flex-wrap">
+                <img src="./img/fail1back.jpg" />
+                <img src="./img/fail1backedge.jpg" />
+                <img src="./img/fail1backside.jpg" />
+                <img src="./img/fail1front.jpg" />
+                <img src="./img/fail1frontprong.jpg" />
+                <img src="./img/fail1opened.jpg" />
+                <img src="./img/fail1top.jpg" />
+            </div>
+            <p>Clearly from the images above, you can see that this was not very effective, it was sloppy, and broke occasionally, and the various pieces of tape didnt work. So when I connected the terminals to the arduino it didn't read anything at all, probably some messed up tape somewhere not connecting properly or just creating a short circuit.</p>
+            <p>My next iteration would have to require more research, make it more lean, and more robust. Thus I found a copper solid plate in the lab and decided to use that as well. Despite it being flimsy, I figured it might work. Along with that, instead of using a cut up rubber layer to separate both conductive layers, I used rubber bands. However, what I quickly found was that this approach wouldn't work as well because the copper plate, was well too lean:</p>
+            <div class="flex flex-row flex-wrap">
+                <img src="./img/fail2.jpg" />
+                <img src="./img/fail2back.jpg" />
+                <img src="./img/fail2front.jpg" />
+                <img src="./img/fail2good.jpg" />
+                <img src="./img/fail2side.jpg" />
+            </div>
+            <p>After this is when I was able to come up with a more practical idea. I did some more research on how to best build this, and I came up on some practical current real world scenarios using force sensing and also some membrance components here:</p>
+            <a href="https://www.pololu.com/product/2730" class="text-blue-400">Pololu force sensing potentiometer</a>
+            <a href="https://www.fierceelectronics.com/components/membrane-potentiometers-provide-competitive-alternative-to-traditional-linear-and-rotary" class="text-blue-400">Membrane linear potentiometer</a>
+            <p>These resources provided some critical images which helped me understand better how to build this:</p>
+            <img src="./img/forcelinpot.jpg" />
+            <img src="./img/linpot.webp" />
+            <p>In otherwords, what my final design would consiste of a resistive path on some printed base made of plastic or some non-conductive layer, along with a collector that is a short circuit path ontop of the base. Then there is a space that separate the layer for redudancy cases. Whenever pressure is applied, the electrical contact then is applied to the resistive path and the resistance can then be tracked.</p>
+            <p>This was what I was going to use in my future plan. Thankfully, I found a nice conductive layer that wouldn't require me to already print some conductive layer ontop of a membrance, because I was able to find one in the SEC. The only thing I had to do was use a press to head up the layer such that it maintains its conductive properties.</p>
+        </div>
     </body>
 </html>
